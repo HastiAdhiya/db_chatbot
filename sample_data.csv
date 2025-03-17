@@ -1,0 +1,33 @@
+user_id,first_name,last_name,email,phone,department,role,salary
+1001,John,Smith,john.smith@company.com,555-123-4567,IT,Senior Developer,85000
+1002,Emily,Johnson,emily.j@company.com,555-234-5678,Marketing,Marketing Specialist,65000
+1003,Michael,Williams,m.williams@company.com,555-345-6789,Finance,Financial Analyst,72000
+1004,Jessica,Brown,jess.brown@company.com,555-456-7890,HR,HR Manager,95000
+1005,David,Jones,david.j@company.com,555-567-8901,IT,Network Administrator,78000
+1006,Sarah,Garcia,s.garcia@company.com,555-678-9012,Sales,Sales Representative,68000
+1007,Robert,Miller,robert.m@company.com,555-789-0123,IT,Database Administrator,82000
+1008,Jennifer,Davis,jen.davis@company.com,555-890-1234,Marketing,Content Creator,63000
+1009,William,Rodriguez,will.r@company.com,555-901-2345,Finance,Accountant,70000
+1010,Lisa,Martinez,lisa.m@company.com,555-012-3456,HR,Recruiter,67000
+1011,James,Hernandez,james.h@company.com,555-123-7890,IT,Support Specialist,59000
+1012,Michelle,Lopez,michelle.l@company.com,555-234-8901,Sales,Account Manager,76000
+1013,Thomas,Gonzalez,t.gonzalez@company.com,555-345-9012,Marketing,Digital Strategist,74000
+1014,Patricia,Wilson,pat.w@company.com,555-456-0123,Finance,Budget Analyst,69000
+1015,Richard,Anderson,r.anderson@company.com,555-567-1234,IT,IT Director,120000
+1016,Karen,Thomas,karen.t@company.com,555-678-2345,HR,Benefits Coordinator,64000
+1017,Daniel,Taylor,daniel.t@company.com,555-789-3456,Sales,Sales Associate,55000
+1018,Elizabeth,Moore,e.moore@company.com,555-890-4567,Marketing,Marketing Director,115000
+1019,Christopher,Jackson,chris.j@company.com,555-901-5678,IT,Software Engineer,73000
+1020,Nancy,White,nancy.w@company.com,555-012-6789,Finance,Finance Director,125000
+1021,Anthony,Harris,anthony.h@company.com,555-123-7890,Sales,Sales Director,130000
+1022,Donna,Martin,donna.m@company.com,555-234-8901,HR,HR Director,122000
+1023,Paul,Thompson,paul.t@company.com,555-345-9012,IT,Systems Analyst,79000
+1024,Susan,Garcia,susan.g@company.com,555-456-0123,Sales,Sales Manager,98000
+1025,Mark,Martinez,mark.m@company.com,555-567-1234,Marketing,Brand Manager,77000
+1026,Laura,Robinson,laura.r@company.com,555-678-2345,Finance,Payroll Specialist,66000
+1027,Steven,Clark,steven.c@company.com,555-789-3456,HR,Training Coordinator,65000
+1028,Amy,Rodriguez,amy.r@company.com,555-890-4567,IT,QA Engineer,71000
+1029,Kevin,Lewis,kevin.l@company.com,555-901-5678,Sales,Business Developer,75000
+1030,Carol,Lee,carol.l@company.com,555-012-6789,Marketing,SEO Specialist,68000
+,,,,,,,
+"This table includes all the employee data organized in columns, making it easy to see all user information at a glance. For your admin chatbot, this data structure would allow for queries about user details across various dimensions such as department, location, status, and reporting structure.",,,,,,,
