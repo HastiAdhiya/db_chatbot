@@ -7,12 +7,10 @@ from dotenv import load_dotenv
 # Load environment variables from .env file
 load_dotenv()
 
-# Database path from .env file (fallback to None if not found)
+# Database path from .env file
 DB_PATH = os.getenv("DB_PATH")
-
-# Ensure DB_PATH is set, otherwise raise an error
 if not DB_PATH:
-    raise ValueError("Database path not set. Please configure the .env file correctly.")
+    raise ValueError("Database path not set")
 
 # Predefined responses for greetings and general queries
 GREETING_RESPONSES = {
@@ -41,7 +39,7 @@ def execute_query(query, params=()):
         cursor = conn.cursor()
         cursor.execute(query, params)
         result = cursor.fetchall()
-        print("Result ---->", result)
+        # print("Result ---->", result)
         conn.close()
         return result
     except Exception as e:
@@ -77,7 +75,7 @@ def ask_llama(query):
     )
     
     sql_query = response["message"]["content"].strip()
-    print("SQL Query ---->", sql_query)
+    # print("SQL Query ---->", sql_query)
     
     return sql_query if "SELECT" in sql_query.upper() else None
 
@@ -93,7 +91,7 @@ def chatbot_response(user_input):
     if not sql_query:
         return "I'm not sure about that. Could you clarify?"
     
-    results = execute_query(sql_query)
+    # results = execute_query(sql_query)
     print("Results ---->", results)
     
     if not results:
