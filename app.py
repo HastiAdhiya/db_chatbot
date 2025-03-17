@@ -1,23 +1,54 @@
 # Importing necessary libraries
 import ollama
 import sqlite3
-import re
+import os
+from dotenv import load_dotenv
 
-# database path
-db_path= r"C:\Hasti\db_chatbot\database_file.db"
+# Load environment variables from .env file
+load_dotenv()
+
+# Database path from .env file (fallback to None if not found)
+DB_PATH = os.getenv("DB_PATH")
+
+# Ensure DB_PATH is set, otherwise raise an error
+if not DB_PATH:
+    raise ValueError("Database path not set. Please configure the .env file correctly.")
+
+# Predefined responses for greetings and general queries
+GREETING_RESPONSES = {
+    "hello": "Hello! How can I assist you today?",
+    "hi": "Hi there! What can I do for you?",
+    "hey": "Hey! How can I help?",
+    "good morning": "Good morning! How can I assist you?",
+    "good afternoon": "Good afternoon! What do you need help with?",
+    "good evening": "Good evening! How can I assist?",
+    "how are you": "I'm just a chatbot, but I'm here to help!",
+    "what's up": "Not much! Just here to answer your queries.",
+    "thank you": "You're welcome!",
+    "thanks": "Happy to help!"
+}
+
+# Function to check if user input is a greeting
+def check_greeting(user_input):
+    user_input_lower = user_input.lower().strip()
+    return GREETING_RESPONSES.get(user_input_lower, None)
 
 # Function to execute query
 def execute_query(query, params=()):
-    # connect to database
-    conn = sqlite3.connect(db_path)
-    cursor = conn.cursor()
-    cursor.execute(query, params)
-    result = cursor.fetchall()
-    print("Result---->", result)
-    conn.close()
-    return result
+    try:
+        # Connect to the database
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
+        cursor.execute(query, params)
+        result = cursor.fetchall()
+        print("Result ---->", result)
+        conn.close()
+        return result
+    except Exception as e:
+        print("Database Error:", e)
+        return None
 
-# function which extract an SQL Query from user input using llama3
+# Function to extract an SQL Query from user input using Llama 3
 def ask_llama(query):
     prompt = f"""
     You are an AI that converts user queries into SQL queries to retrieve information from a SQLite database.
@@ -46,18 +77,25 @@ def ask_llama(query):
     )
     
     sql_query = response["message"]["content"].strip()
-    print("SQL Query------>", sql_query)
-    return sql_query if "SELECT" in sql_query else None
+    print("SQL Query ---->", sql_query)
+    
+    return sql_query if "SELECT" in sql_query.upper() else None
 
-# Extract user queries using llama3
+# Extract user queries using Llama 3
 def chatbot_response(user_input):
-
+    # Check if input is a greeting
+    greeting_response = check_greeting(user_input)
+    if greeting_response:
+        return greeting_response
+    
+    # Otherwise, process as a database query
     sql_query = ask_llama(user_input)
     if not sql_query:
         return "I'm not sure about that. Could you clarify?"
     
     results = execute_query(sql_query)
-    print("Results------>", results)
+    print("Results ---->", results)
+    
     if not results:
         return "No user found."
     
@@ -65,7 +103,7 @@ def chatbot_response(user_input):
 
 if __name__ == "__main__":
     while True:
-        user_input = input("USer Query: ")
+        user_input = input("User Query: ")
         if user_input.lower() in ["exit", "quit"]:
             print("Goodbye!")
             break
